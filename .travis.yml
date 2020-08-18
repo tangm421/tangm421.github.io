@@ -2,17 +2,36 @@ sudo: false
 language: node_js
 node_js:
   - 12 # use nodejs v12 LTS
-cache: npm
+
 branches:
   only:
     - hexo # build hexo branch only
+
+cache:
+  directories:
+    - node_modules
+    #- themes
+
+before_install:
+  - npm install -g hexo-cli # 安装 hexo
+  #- git clone https://github.com/renyuzh/hexo-theme-next.git themes/next # 主题没有更改时不用每次都下载安装一遍
+
+install:
+  - npm install # 安装 package.json 中的插件
+
 script:
   - hexo generate # generate static files
-deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GH_TOKEN
-  keep-history: true
-  on:
-    branch: master
-  local-dir: public
+
+after_success:
+  - git config --global user.name "tangm421"
+  - git config --global user.name "tangm421@outlook.com"
+  - sed -i "s/gh-token/${GH_TOKEN}/g" _config.yml #使用travisCI中配置的token替换掉_config.yml中对应的占位符
+  - hexo deploy
+# deploy:
+  # provider: pages
+  # skip-cleanup: true
+  # github-token: $GH_TOKEN
+  # keep-history: true
+  # on:
+    # branch: master
+  # local-dir: public

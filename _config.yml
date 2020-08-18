@@ -4,12 +4,12 @@
 
 # Site
 title: tangm421's blog
-subtitle: 'New Fish'
-description: 'New Fish's First Blog'
+subtitle: New Fish
+description: New Fish's First Blog
 keywords:
 author: tangm421
 language: zh-Hans
-timezone: 'Asia/Shanghai'
+timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -103,6 +103,6 @@ theme: landscape
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: 'git'
+  type: git
   repository: git@github.com:tangm421/tangm421.github.io.git
   branch: master
